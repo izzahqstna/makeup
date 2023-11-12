@@ -1,0 +1,240 @@
+body,html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  background-image: url('pexel\ bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#words{
+  text-align: center;
+  padding-top: 10%;
+}
+
+h1{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+/*BUTTON ENTER*/
+button.learn-more {
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0.75em, -1em);
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more:hover {
+  background: #ffe9e9;
+  -webkit-transform: translate(0, 0.25em);
+  transform: translate(0, 0.25em);
+}
+
+button.learn-more:hover::before {
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0.5em, -1em);
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+button.learn-more:active {
+  background: #ffe9e9;
+  -webkit-transform: translate(0em, 0.75em);
+  transform: translate(0em, 0.75em);
+}
+
+button.learn-more:active::before {
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0, -1em);
+  transform: translate3d(0, 0, -1em);
+}
+
+/*BUTTON WISHLIST*/
+button#wishlistButton {
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button#wishlistButton::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0.75em, -1em);
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button#wishlistButton:hover {
+  background: #ffe9e9;
+  -webkit-transform: translate(0, 0.25em);
+  transform: translate(0, 0.25em);
+}
+
+button#wishlistButton:hover::before {
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0.5em, -1em);
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+button#wishlistButton:active {
+  background: #ffe9e9;
+  -webkit-transform: translate(0em, 0.75em);
+  transform: translate(0em, 0.75em);
+}
+
+button#wishlistButton:active::before {
+  -webkit-box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  -webkit-transform: translate3d(0, 0, -1em);
+  transform: translate3d(0, 0, -1em);
+}
+
+  /*BOX UNTUK PRODUCT*/
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+  
+.product-box {
+  background-color: #f8f8f8;
+  border: 2px solid #e0e0e0;
+  padding: 30px; /* Increase padding for a larger box */
+  border-radius: 15px; /* Increase border-radius for rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px 0; /* Adjust margin to control the space between rows */
+  width: calc(50% - 10px); /* Increase width for a larger box and adjust margin accordingly */
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+
+.product-box:hover {
+  transform: scale(1.05);
+}
+
+.product-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-box p {
+  margin: 30px 0;
+}
+
+/*SELECT OPTIONS*/
+/*MAKEUP BRAND*/
+#searchMakeup {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow:
+    20px 20px 60px #c5c5c5,
+    -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+ 
+#searchMakeup:focus {
+  outline-color: #e8e8e8;
+  background: #e8e8e8;
+  box-shadow: 
+    inset 20px 20px 60px #c5c5c5,
+    inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+
+/*MAKEUP TYPE*/
+#searchType {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow: 20px 20px 60px #c5c5c5,
+    -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+ 
+#searchType:focus {
+  outline-color: #e8e8e8;
+  background: #e8e8e8;
+  box-shadow: inset 20px 20px 60px #c5c5c5,
+    inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+}
+
+  /*.view-details-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .view-details-button:hover {
+      background-color: #0056b3;
+  }*/

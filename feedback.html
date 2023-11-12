@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feedback</title>
+  <style>
+    /* Add your updated CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #dccfc1; /* Corrected the background color value */
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      background-color: #9d7972; /* Change the background color to red */
+      color: white;
+      padding: 20px;
+      margin: 0 0 20px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    .form-group {
+      margin: 20px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    /* Styles for Edit and Delete buttons */
+    .styled-button {
+            appearance: button;
+            background-color: #610027;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 2px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            line-height: 20px;
+            margin: 0;
+            outline: none;
+            overflow: visible;
+            padding: 5px 19px;
+            text-align: center;
+            text-transform: uppercase;
+            touch-action: manipulation;
+            transform: translateZ(0);
+            transition: filter .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .styled-button:after {
+            background-clip: padding-box;
+            background-color: #912b48;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 4px;
+            bottom: -4px;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        .styled-button:main, .styled-button:focus {
+            user-select: auto;
+        }
+
+        .styled-button:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
+
+        .styled-button:disabled {
+            cursor: auto;
+        }
+
+        .styled-button:active:after {
+            border-width: 0 0 0px;
+        }
+
+        .styled-button:active {
+            padding-bottom: 5px;
+        }
+
+    #feedbackList {
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .feedback-item {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+    }
+    .feedback-buttons {
+        margin-top: 10px;
+    }
+    #updateModal {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f5f0e1;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Feedback</h1>
+    
+    <!-- Or add a button to navigate back to the previous page in the browser history -->
+    <button onclick="goBack()" class="learn-more">Back</button>
+    
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="message" placeholder="Enter your feedback"></textarea>
+    </div>
+    <button onclick="submitFeedback()">Submit</button>
+    <div id="feedbackList"></div>
+  </div>
+
+  <div id="updateModal">
+    <div>
+      <label for="newName">Name:</label>
+      <input type="text" id="newName" placeholder="Enter a new name...">
+    </div>
+    <div>
+      <label for="newEmail">Email:</label>
+      <input type="email" id="newEmail" placeholder="Enter a new email...">
+    </div>
+    <div>
+      <label for="newMessage">Message:</label>
+      <textarea id="newMessage" placeholder="Enter a new message..."></textarea>
+    </div>
+    <button onclick="saveUpdate()" class="learn-more">Save</button>
+    <button onclick="closeModal()" class="learn-more">Close</button>
+  </div>
+
+  <script>
+    // Load feedbacks from local storage on page load
+    var feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+    var selectedIndex;
+
+    function submitFeedback() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      
+      feedbacks.push({
+        name: name,
+        email: email,
+        message: message
+      });
+
+      // Save feedbacks to local storage
+      localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+      
+      readFeedbacks();
+    }
+
+    function readFeedbacks() {
+      var feedbackList = document.getElementById('feedbackList');
+      feedbackList.innerHTML = '';
+      for (var i = 0; i < feedbacks.length; i++) {
+        feedbackList.innerHTML += `
+          <div class="feedback-item">
+            <p>Name: ${feedbacks[i].name}</p>
+            <p>Email: ${feedbacks[i].email}</p>
+            <p>Message: ${feedbacks[i].message}</p>
+            <div class="feedback-buttons">
+              <button onclick="updateFeedback(${i})">Update</button>
+              <button onclick="deleteFeedback(${i})">Delete</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function updateFeedback(index) {
+      selectedIndex = index;
+      document.getElementById('newName').value = feedbacks[index].name;
+      document.getElementById('newEmail').value = feedbacks[index].email;
+      document.getElementById('newMessage').value = feedbacks[index].message;
+      document.getElementById('updateModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('updateModal').style.display = 'none';
+    }
+
+    function saveUpdate() {
+      feedbacks[selectedIndex].name = document.getElementById('newName').value;
+      feedbacks[selectedIndex].email = document.getElementById('newEmail').value;
+      feedbacks[selectedIndex].message = document.getElementById('newMessage').value;
+      
+      // Save updated feedbacks to local storage
+      localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+      readFeedbacks();
+      closeModal();
+    }
+
+    function deleteFeedback(index) {
+      feedbacks.splice(index, 1);
+
+      // Save updated feedbacks to local storage
+      localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+      readFeedbacks();
+    }
+
+    // Function to navigate back to the previous page in the browser history
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
